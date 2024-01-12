@@ -30,19 +30,23 @@ generate.addEventListener('click', () => {
     const hasLower = document.getElementById('lowercase').checked;
     const hasNumber = document.getElementById('numbers').checked;
     const hasSymbol = document.getElementById('symbols').checked;
-    
-    const results = document.getElementById('result-password');
-    
-    if(!hasLower && !hasUpper && !hasNumber && !hasSymbol) {
-        const newStyle = `
-            font-size: 80%;
-            font-weight: 400;
-            padding: 10px;
-            color: red;
-        `;
 
+    const results = document.getElementById('result-password');
+
+    const newStyle = `
+        font-size: 80%;
+        font-weight: 400;
+        padding: 10px;
+        color: red;
+    `;
+
+    if (!hasLower && !hasUpper && !hasNumber && !hasSymbol) {
         results.style.cssText = newStyle;
         results.innerText = 'you have to select one of the options';
+
+    } else if (length > 20 || length < 3) {
+        results.style.cssText = newStyle;
+        results.innerText = 'invalid size (try between 3 and 20)';
 
     } else {
         const oldStyle = `
@@ -57,7 +61,7 @@ generate.addEventListener('click', () => {
     }
 })
 
-function generatePassword (upper, lower, number, symbol, length) {
+function generatePassword(upper, lower, number, symbol, length) {
     let generatedPassword = '';
     const typesCount = lower + upper + number + symbol;
 
@@ -88,7 +92,7 @@ copyBtn.addEventListener('click', (e) => {
     setTimeout(() => {
         copyBtn.innerHTML = originalText
     }, 1500)
-}); 
+});
 
 // ---------- LIGHT THEME
 const light = document.getElementById('light');
@@ -97,18 +101,18 @@ light.addEventListener('click', () => {
     const lightBack = `
         background: white;
         color: #040D12;  
-    ` 
+    `
     config.style.cssText = lightBack;
 
     const box = document.getElementById('password-generator');
     const lightBox = `
         background-color: #93B1A6;
         box-shadow: rgba(147, 177, 177, 0.5) 5px 5px, rgba(147, 177, 177, 0.4) 10px 10px, rgba(147, 177, 177, 0.3) 15px 15px, rgba(147, 177, 177, 0.2) 20px 20px, rgba(147, 177, 177, 0.1) 25px 25px;
-    ` 
+    `
     box.style.cssText = lightBox;
-    
+
     const lightBtn = document.querySelectorAll('.btn-light');
-    lightBtn.forEach (el => {
+    lightBtn.forEach(el => {
         el.classList.remove('btn-light');
         el.classList.add('btn-dark');
     })
@@ -121,18 +125,18 @@ dark.addEventListener('click', () => {
     const darkBack = `
         background: #040D12;
         color: white;
-    ` 
+    `
     config.style.cssText = darkBack;
 
     const box = document.getElementById('password-generator');
     const darkBox = `
         background-color: #134648;
         box-shadow: rgba(24, 70, 70, 0.5) 5px 5px, rgba(24, 70, 70, 0.4) 10px 10px, rgba(24, 70, 70, 0.3) 15px 15px, rgba(24, 70, 70, 0.2) 20px 20px, rgba(24, 70, 70, 0.1) 25px 25px;
-    ` 
+    `
     box.style.cssText = darkBox;
 
     const darkBtn = document.querySelectorAll('.btn-dark');
-    darkBtn.forEach (el => {
+    darkBtn.forEach(el => {
         el.classList.remove('btn-dark');
         el.classList.add('btn-light');
     })

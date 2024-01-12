@@ -34,6 +34,7 @@ generate.addEventListener('click', () => {
     const results = document.getElementById('result-password');
 
     const newStyle = `
+        text-align: center;
         font-size: 80%;
         font-weight: 400;
         padding: 10px;
